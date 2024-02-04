@@ -21,6 +21,13 @@ def answer_question(poll, session_token):
     submit_link = 'https://www.openhotseat.org' + answer['href']
     reqw.post(submit_link, cookies={'ASP.NET_SessionId': session_token})
 
+    
+def answer_question(poll, session_token):
+    form = poll.findChildren("form", recursive=True)[0]
+    answer = random.choice(form.findChildren("a", recursive=True))
+    submit_link = 'https://www.openhotseat.org' + answer['href']
+    reqw.post(submit_link, cookies={'ASP.NET_SessionId': session_token})
+
 urls = [f'https://www.openhotseat.org/Topic/Poll/6176{id}' for id in range(4, 10)]
 
 while True:
